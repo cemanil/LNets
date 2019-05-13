@@ -1,0 +1,109 @@
+{
+  "task": "EMD",
+  "output_root": "out/wde_estimate",
+  "exp_name": "bpp3",
+  "seed": 0,
+
+  "model": {
+    "pretrained_best_path": null,
+    "name": "dual_fc",
+    "activation": "group_sort",
+    "linear": {
+      "type": "bjorck",
+      "safe_scaling": true,
+      "power_iters": 2,
+      "bjorck_beta": 0.5,
+      "bjorck_iter": 27,
+      "bjorck_order": 1,
+      "bias": true
+    },
+    "layers": [
+      720,
+      720,
+      1
+    ],
+    "groupings": [
+      9,
+      9,
+      1
+    ],
+    "l_constant": 1,
+    "per_epoch_proj": {
+      "turned_on": false,
+      "every_n_epochs": 100000000,
+      "type": "l_2",
+      "bjorck_beta": 0.5,
+      "bjorck_iter": 20,
+      "bjorck_order": 1,
+      "reset_optimizer": false
+    },
+    "per_update_proj": {
+      "turned_on": false,
+      "type": "l_2",
+      "bjorck_beta": 0.5,
+      "bjorck_iter": 12,
+      "bjorck_order": 1
+    }
+  },
+
+  "optim": {
+    "optimizer": "adam",
+    "lr_schedule": {
+      "name": "step",
+      "lr_init": 0.001,
+      "lr_decay": 0.9,
+      "milestones": [
+        64,
+        96,
+        128,
+        256,
+        392
+      ],
+      "last_epoch": -1
+    },
+    "epoch_len": 32,
+    "epochs": 512,
+    "momentum": 0.9,
+    "betas": [
+      0.0,
+      0.9,
+      0.99
+    ],
+    "wdecay": 0.0,
+    "criterion": {
+      "tag": "loss",
+      "minmax": "min"
+    },
+    "patience": 250,
+    "max_grad_norm": 0.1
+  },
+
+  "distrib1": {
+    "name": "GANSampler",
+    "filepath": "lnets/tasks/dualnets/distrib/gan_sampler.py",
+    "gan_config_json_path": "./out/gan/LGANS/GAN_training_LWGAN_mnist_WGAN_2019_01_22_17_23_05_512353/hparams/hparams.json",
+    "sample_size": 64,
+    "test_sample_size": 64,
+    "generate_type": "real",
+    "dim": 3072
+  },
+
+  "distrib2": {
+    "name": "GANSampler",
+    "filepath": "lnets/tasks/dualnets/distrib/gan_sampler.py",
+    "gan_config_json_path": "./out/gan/LGANS/GAN_training_LWGAN_mnist_WGAN_2019_01_22_17_23_05_512353/hparams/hparams.json",
+    "sample_size": 64,
+    "test_sample_size": 64,
+    "generate_type": "generated",
+    "dim": 3072
+  },
+
+  "logging": {
+    "report_freq": 8,
+    "save_model": false,
+    "save_best": false
+  },
+
+  "cuda": false,
+  "visualize": false
+}

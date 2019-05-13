@@ -1,0 +1,15 @@
+{
+  "name": "ProjectedGradientDescent",
+  "output_root": "out/adversarial",
+  "pretrained_path": "out/path/to/model",
+  "attack_kwargs": {
+    "binary_search": 5,
+    "iterations": 20
+  },
+  "data": {
+    "batch_size": 1
+  },
+  "num_examples": 500,
+  "distance": "Linfinity",
+  "cuda": true
+}

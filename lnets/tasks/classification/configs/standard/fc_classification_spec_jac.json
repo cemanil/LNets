@@ -1,0 +1,102 @@
+{
+    "cuda": false,
+    "task": "classify",
+    "output_root": "out/classification/mnist",
+    "exp_name": "lipschitz-spec-jac",
+    "seed": 0,
+    "model": {
+      "pretrained_best_path": null,
+      "name": "classify_fc_spec_jac",
+      "activation": "relu",
+      "linear": {
+        "type": "standard",
+        "parseval": false,
+        "safe_scaling": false,
+        "bjorck_beta": 0.5,
+        "bjorck_iter": 10,
+        "bjorck_order": 1,
+        "bias": true
+      },
+      "layers": [
+        1024,
+        1024,
+        1024,
+        10
+      ],
+      "groupings": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "sn_reg": 0.05,
+      "l_constant": 1.0,
+      "per_epoch_proj": {
+        "turned_on": false,
+        "every_n_epochs": 1,
+        "type": "l_2",
+        "bjorck_beta": 0.5,
+        "bjorck_iter": 20,
+        "bjorck_order": 1,
+        "reset_optimizer": false
+      },
+  
+      "per_update_proj": {
+        "turned_on": false,
+        "type": "l_2",
+        "bjorck_beta": 0.5,
+        "bjorck_iter": 1,
+        "bjorck_order": 1
+      }
+    },
+    "optim": {
+      "optimizer": "adam",
+      "lr_schedule": {
+        "name": "step",
+        "lr_init": 0.001,
+        "lr_decay": 0.1,
+        "milestones": [
+          60,
+          100,
+          150
+        ],
+        "last_epoch": -1
+      },
+      "epochs": 200,
+      "batch_size": 128,
+      "momentum": 0.9,
+      "betas": [
+        0.0,
+        0.9,
+        0.99
+      ],
+      "wdecay": 0.0,
+      "criterion": {
+        "tag": "acc",
+        "minmax": "max"
+      },
+      "patience": 50,
+      "max_grad_norm": 1e8
+    },
+    "data": {
+      "name": "mnist",
+      "root": "data",
+      "indices_path": null,
+      "per_class_count": 30,
+      "transform": {
+        "type": "mnist"
+      },
+      "validation": true,
+      "train_size": 0.9,
+      "input_dim": 784,
+      "im_height": 28,
+      "im_width": 28,
+      "num_workers": 0,
+      "class_count": 10
+    },
+    "logging": {
+      "report_freq": 1,
+      "save_model": false,
+      "save_best": true
+    }
+  }

@@ -1,0 +1,12 @@
+{
+  "pretrained_path": "out/path/to/model",
+  "output_root": "out/adversarial",
+
+  "data": {
+    "batch_size": 32
+  },
+  "cuda": true,
+  "visualization": {
+    "num_rows": 8
+  }
+}

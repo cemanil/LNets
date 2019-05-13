@@ -1,0 +1,15 @@
+{
+  "name": "GradientSignAttack",
+  "output_root": "out/adversarual",
+  "pretrained_path": "out/path/to/model",
+  "attack_kwargs": {
+    "epsilons": 50,
+    "max_epsilon": 1.0
+  },
+  "data": {
+    "batch_size": 1
+  },
+  "num_examples": 500,
+  "distance": "Linfinity",
+  "cuda": true
+}

@@ -1,0 +1,26 @@
+{
+  "seed": 0,
+  "task": "GAN_training",
+  "output_root": "out/gan/LGANS",
+  "exp_name": "LWGAN",
+
+
+  "gan_type": "WGAN",
+
+  "data_root": "data/LNets/gan",
+
+  "dataset": "mnist",
+  "split": "",
+  "epoch": 256,
+  "batch_size": 64,
+  "input_size": 28,
+
+
+  "lrG": 0.0002,
+  "lrD": 0.0002,
+  "beta1": 0.5,
+  "beta2": 0.999,
+
+  "gpu_mode": false,
+  "benchmark_mode": true
+}

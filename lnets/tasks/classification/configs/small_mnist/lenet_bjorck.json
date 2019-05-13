@@ -1,0 +1,96 @@
+{
+    "seed": 0,
+    "model": {
+      "pretrained_best_path": null,
+      "name": "lenet_classify",
+      "activation": "relu",
+      "linear": {
+        "type": "bjorck",
+        "safe_scaling": false,
+        "power_iters": 2,
+        "bjorck_beta": 0.5,
+        "bjorck_iter": 5,
+        "bjorck_order": 1,
+        "bias": true
+      },
+      "dropout_on": false,
+      "l_constant": 1.0,
+      "output_dim": 10,
+  
+      "per_epoch_proj": {
+        "turned_on": false,
+        "every_n_epochs": 100000000,
+        "type": "l_2",
+        "bjorck_beta": 0.5,
+        "bjorck_iter": 20,
+        "bjorck_order": 1,
+        "reset_optimizer": false
+      },
+  
+      "per_update_proj": {
+        "turned_on": false,
+        "type": "l_2",
+        "bjorck_beta": 0.5,
+        "bjorck_iter": 12,
+        "bjorck_order": 1
+      }
+    },
+  
+    "optim": {
+      "optimizer": "adam",
+      "lr_schedule": {
+        "name": "step",
+        "lr_init": 0.001,
+        "lr_decay": 0.1,
+        "milestones": [
+          100,
+          150
+        ],
+        "last_epoch": -1
+      },
+      "epochs": 200,
+      "batch_size": 32,
+      "momentum": 0.9,
+      "betas": [
+        0.0,
+        0.9,
+        0.99
+      ],
+      "wdecay": 0.0,
+      "criterion": {
+        "tag": "loss",
+        "minmax": "min"
+      },
+      "patience": 250,
+      "max_grad_norm": 1e8
+    },
+  
+    "data": {
+      "name": "mnist",
+      "root": "data",
+      "indices_path": "./data/small_mnist/mnist",
+      "per_class_count": 100,
+      "transform": {
+        "type": "mnist"
+      },
+      "validation": false,
+      "train_size": 0.9,
+      "input_dim": 784,
+      "im_height": 28,
+      "im_width": 28,
+      "in_channels": 1,
+      "num_workers": 0,
+      "class_count": 10
+    },
+  
+    "logging": {
+      "report_freq": 1,
+      "save_model": false,
+      "save_best": false
+    },
+  
+    "cuda": false,
+    "task": "classify",
+    "output_root": "out/classification/small_mnist",
+    "exp_name": "lipschitz"
+  }

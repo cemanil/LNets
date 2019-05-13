@@ -1,0 +1,151 @@
+{
+  "task": "wasserstein_distance_estimation",
+  "output_root": "out/wde",
+  "exp_name": "high_dimensional_cone_experiment",
+  "seed": 0,
+  "model": {
+    "pretrained_best_path": null,
+    "name": "dual_fc",
+    "activation": "group_sort",
+    "linear": {
+      "type": "bjorck",
+      "safe_scaling": true,
+      "power_iters": 2,
+      "bjorck_beta": 0.5,
+      "bjorck_iter": 20,
+      "bjorck_order": 1,
+      "bias": true
+    },
+    "layers": [
+      256,
+      256,
+      256,
+      256,
+      256,
+      256,
+      1
+    ],
+    "groupings": [
+      256,
+      256,
+      256,
+      256,
+      256,
+      256,
+      1
+    ],
+    "l_constant": 1,
+
+    "per_epoch_proj": {
+      "turned_on": false,
+      "every_n_epochs": 100000000,
+      "type": "l_2",
+      "bjorck_beta": 0.5,
+      "bjorck_iter": 20,
+      "bjorck_order": 1,
+      "reset_optimizer": false
+    },
+
+    "per_update_proj": {
+      "turned_on": false,
+      "type": "l_2",
+      "bjorck_beta": 0.5,
+      "bjorck_iter": 12,
+      "bjorck_order": 1
+    }
+  },
+  "optim": {
+    "optimizer": "aggmo",
+    "lr_schedule": {
+      "name": "step",
+      "lr_init": 0.005,
+      "lr_decay": 0.9,
+      "milestones": [
+        15,
+        30,
+        60,
+        90
+      ],
+      "last_epoch": -1
+    },
+    "epoch_len": 128,
+    "epochs": 150,
+    "momentum": 0.9,
+    "betas": [
+      0.0,
+      0.9,
+      0.99
+    ],
+    "wdecay": 0.0,
+    "criterion": {
+      "tag": "loss",
+      "minmax": "min"
+    },
+    "patience": 250,
+    "max_grad_norm": 1000
+  },
+  "distrib1": {
+    "name": "MultiSphericalShell",
+    "filepath": "lnets/tasks/dualnets/distrib/multi_spherical_shell.py",
+    "dim": 128,
+    "empty_dim": 0,
+    "num_shells": 1,
+    "radius": 0.0000001,
+    "center_x": [
+      0.0
+    ],
+    "reshape_to_grid": false,
+    "sample_size": 32,
+    "test_sample_size": 2048
+  },
+  "distrib2": {
+    "name": "MultiSphericalShell",
+    "filepath": "lnets/tasks/dualnets/distrib/multi_spherical_shell.py",
+    "dim": 128,
+    "empty_dim": 0,
+    "num_shells": 1,
+    "radius": 1,
+    "center_x": [
+      0.0
+    ],
+    "reshape_to_grid": false,
+    "sample_size": 32,
+    "test_sample_size": 2048
+  },
+  "visualize_2d": {
+    "xrange": [
+      -4.1,
+      4.1
+    ],
+    "yrange": [
+      -1.1,
+      1.1
+    ],
+    "step": 0.02,
+    "fig_types": [
+      "contour"
+    ],
+    "elev": [
+      0,
+      60,
+      90
+    ],
+    "azim": [
+      0
+    ]
+  },
+  "visualize_1d": {
+    "xrange": [
+      -1.2,
+      1.2
+    ],
+    "step": 0.02
+  },
+  "logging": {
+    "report_freq": 1,
+    "save_model": false,
+    "save_best": false
+  },
+  "cuda": false,
+  "visualize": false
+}

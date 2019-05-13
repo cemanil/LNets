@@ -1,0 +1,13 @@
+{
+    "name": "BoundaryAttack",
+    "output_root": "out/adversarial",
+    "pretrained_path": "out/path/to/model",
+    "attack_kwargs": {
+    },
+    "data": {
+      "batch_size": 1
+    },
+    "num_examples": 40,
+    "distance": "Linfinity",
+    "cuda": true
+  }
