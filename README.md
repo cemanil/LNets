@@ -25,7 +25,7 @@ Implementation and evaluation of Lipschitz neural networks (LNets).
     export PYTHONPATH="${PYTHONPATH}:`pwd`"
     ``` 
     
-**Note on PyTorch version**: All the experiments were performed using PyTorch version 0.4, although the code is expected
+**Note on PyTorch version**: All the experiments were performed using PyTorch version 0.4.1, although the code is expected
 to run using Pytorch 1.0. 
 
 # Models
