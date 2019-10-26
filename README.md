@@ -1,5 +1,5 @@
 # LNets
-Implementation and evaluation of Lipschitz neural networks (LNets). 
+Implementation and evaluation of Lipschitz neural networks (LNets). Paper link: https://arxiv.org/abs/1811.05381 
 
 # Installation
 * Create a new conda environment and activate it:
