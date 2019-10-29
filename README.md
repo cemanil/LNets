@@ -187,6 +187,12 @@ estimation.
 One can then modify the model to see which Lipschitz architectures obtain a tighter lower bound on the Wasserstein
 distance between the generator and empirical data distribution. 
 
+(warning) Unless the training conditions were exactly the same, the GANs obtained in the GAN training step 
+might be slightly different (due to high sensitivity of the training dynamics on initial conditions). Although the estimated 
+Wasserstein distances will be different in this case, the relative ordering and approximate ratios of the performance of 
+each Lipschitz architectures should be the the same as reported in the paper. We will remedy this by uploading a
+trained GAN checkpoint in a future commit. 
+
 ### Training LWGAN (Lipschitz WGANs)
 We can use the same WGAN training methodology, but build a discriminator network comprised of our methods (i.e. Bjorck 
 orthonormalized linear transformations and GroupSort activations)

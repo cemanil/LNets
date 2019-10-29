@@ -11,7 +11,7 @@
 
   "dataset": "mnist",
   "split": "",
-  "epoch": 256,
+  "epoch": 50,
   "batch_size": 64,
   "input_size": 28,
 
