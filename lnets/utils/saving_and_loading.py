@@ -94,17 +94,19 @@ def load_best_model_and_optimizer(model, optimizer, best_path):
     load_optimizer(optimizer, best_optimizer_path)
 
 
-def save_1_or_2_dim_dualnet_visualizations(model, dim, figures_dir, config, epoch=None, loss=None,
+def save_1_or_2_dim_dualnet_visualizations(model, figures_dir, config, epoch=None, loss=None,
                                            after_training=False):
+
+    dim = config.distrib1.dim
     if not after_training:
         if dim == 2:
             save_2d_dualnet_visualizations(model, figures_dir, config, epoch, loss)
         if dim == 1:
             save_1d_dualnet_visualizations(model, figures_dir, config, epoch, loss)
     else:
-        if config.distrib1.dim == 2:
+        if dim == 2:
             save_2d_dualnet_visualizations(model, figures_dir, config, after_training=True)
-        if config.distrib1.dim == 1:
+        if dim == 1:
             save_1d_dualnet_visualizations(model, figures_dir, config, after_training=True)
 
 
