@@ -106,7 +106,7 @@ def train_dualnet(model, loaders, config):
 
             # Visualize the learned critic landscape.
             if config.visualize:
-                save_1_or_2_dim_dualnet_visualizations(model, config.distrib1.dim, dirs.figures_dir, config,
+                save_1_or_2_dim_dualnet_visualizations(model, dirs.figures_dir, config,
                                                        state['epoch'], state['loss'])
 
         # Check if this is the best model.
@@ -158,7 +158,7 @@ def train_dualnet(model, loaders, config):
 
     # Visualize the learned critic landscape.
     if config.visualize:
-        save_1_or_2_dim_dualnet_visualizations(model, config.distrib1.dim, dirs.figures_dir, config,
+        save_1_or_2_dim_dualnet_visualizations(model, dirs.figures_dir, config,
                                                after_training=False)
 
     return test_state
