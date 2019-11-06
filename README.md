@@ -248,12 +248,24 @@ python ./lnets/tasks/classification/mains/train_classifier.py ./lnets/tasks/clas
 
 ### Adversarial Robustness
 
-For the robustness experiments we trained both the Bjorck orthonormal networks and the L-infinity max-margin networks.
+For the robustness experiments we trained both the Bjorck orthonormal networks and the L-infinity max-margin networks. In the paper we also compared to the robustness of networks trained without any Lipschitz constraints.
 
 * Training  L-Inf Lipschitz margin network
 
 ```
 python ./lnets/tasks/classification/mains/train_classifier.py ./lnets/tasks/classification/configs/standard/fc_classification_l_inf_margin.json
+```
+
+* Training "standard" network
+
+```
+python ./lnets/tasks/classification/mains/train_classifier.py ./lnets/tasks/classification/configs/standard/fc_classification.json
+```
+
+* Training with PGD
+
+```
+python ./lnets/tasks/adversarial/mains/train_pgd.py ./lnets/tasks/classification/configs/standard/fc_classification.json
 ```
 
 * Evaluating robustness of trained classifier
