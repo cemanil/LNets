@@ -49,6 +49,7 @@ def check_group_sorted(x, num_units, axis=-1):
 
     x_np = x.cpu().data.numpy()
     x_np = x_np.reshape(*size)
+    axis = axis if axis == -1 else axis + 1
     x_np_diff = np.diff(x_np, axis=axis)
 
     # Return 1 iff all elements are increasing.
